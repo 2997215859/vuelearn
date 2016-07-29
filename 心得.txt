@@ -1,0 +1,42 @@
+2016.7.28
+
+今天又重新回顾了一下vuejs官网上的1-6节，感觉印象最为深刻的莫过于绑定，在文档中渲染文本，和在属性中渲染数据，也可以采取v-bind等指令直接绑定，而无需用｛｛｝｝来绑定，当然也可以用｛｛｛｝｝｝来将绑定的数据当作html解析
+
+2016.7.29
+
+绑定样式最好不要既用｛｛｝｝，又用v-bind，否则很可能报错，
+一般绑定样式会支持对象和数组
+比如 v-bind:class="[class1,class2"] class列表
+获取 v-bind:class="{classname1:is1,classname2:is2}" 条件class
+如果都支持呢，可以用三元表达式 v-bind:class="[classA,isB?classB:""]"这么写还是有些麻烦，所以vue支持这种写法 v-bind:class='[classA,{classBname:isB}]'
+
+v-bind:style实际上是一个对象，比如
+v-bind:style="{color:activeColor,fontSize:fontSize+'px'}"
+
+v-show和v-if的区别在于一个始终渲染存在dom中，另一个是只有显示的时候才会渲染。
+
+用track-by来增强组件的复用
+
+vue不能检测到下列数组的变化
+vm.items[0] = {}失效
+可以使用$set内置方法来代替
+vm.items.$set(0,childMsg:"changed");
+vm.item.length = 0失效
+vm.items = {}来代替
+
+v-for取数组可以有（index，item） in items
+v-for取数组可以由（key,value） in item
+
+v-model中
+select、checkbox、radio中的v-model是和已经选择的值所绑定的，可以用v-bind:true-value和v-bind:false-value来设置选择和没选择时候的值
+
+debounce可以设定延迟
+
+过渡和动画
+js中的过渡主要用 transition来实现 ，从A到B的某一个状态
+而动画，主要是用keyframe实现，并且可以有多个变化
+vue.js中的过渡效果主要是绑定transition属性来完成，有进入、过渡、离开三个过
+程 transition = "expand" 则在样式中写上 .expand-transition,.expand-enter,.expand-leave的样式
+并且可以动态绑定不同的过渡样式。。除此之外还可以通过Vue.transition('expand',{})来绑定不同得到钩子
+
+daneden.github.io/animate.css

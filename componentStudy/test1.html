@@ -1,0 +1,31 @@
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<script src="http://cdn.jsdelivr.net/vue/1.0.26/vue.min.js"></script>
+</head>
+<body>
+	<pre>
+		自定义的元素，使用is的特性
+	</pre>
+	<div id="app">
+		<table border="1">
+			<tr is="my-component1"></tr>
+			<tr is="my-component2"></tr>
+		</table>
+	</div>
+	<script>
+		Vue.transition('bounce1',{
+			enterClass:'rubberBand',
+			leaveClass:'lightSpeedOut'
+		});
+		var vm = new Vue({
+			el:"#app",
+			data:{
+				ok:true
+			}
+		});
+	</script>
+</body>
+
+</html> 
