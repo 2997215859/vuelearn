@@ -1,0 +1,25 @@
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<script src="http://cdn.jsdelivr.net/vue/1.0.26/vue.min.js"></script>
+</head>
+<body>
+	<pre>
+		Vue实例时，使用replace有什么差别
+	</pre>
+  <div id="replace" class="foo"></div>
+	<div id="insert" class="foo"></div>
+  <script>
+		var vm1 = new Vue({
+			el:'#replace',
+			template:'<p class="bar">replaced</p>'
+		});
+		var vm2 = new Vue({
+			el:'#insert',
+			replace:false,
+			template:'<p class="bar">inserted</p>'
+		});
+  </script>
+</body>
+</html>

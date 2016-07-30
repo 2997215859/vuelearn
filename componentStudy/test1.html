@@ -6,26 +6,88 @@
 </head>
 <body>
 	<pre>
-		自定义的元素，使用is的特性
+		自定义的元素，使用is的特性（form元素，使用示例）
 	</pre>
 	<div id="app">
 		<table border="1">
 			<tr is="my-component1"></tr>
 			<tr is="my-component2"></tr>
 		</table>
+		<hr>
+		<div is="input1" v-model="input1"></div>{{input1}}
+		<hr>
+		<textarea is="textarea1" v-model="textarea1">{{textarea1}}</textarea>
+		<hr>
+		<input is="checkbox_bike" v-model="checkbox_bike">{{checkbox_bike}}
+		<input is="checkbox_car" v-model="checkbox_car">{{checkbox_car}}
+		<hr>男性：
+		<input type="radio" is="radio_sex1" v-model="radio1">
+		<br>女性：
+		<input type="radio" is="radio_sex2" v-model="radio1">
+		{{radio1}}
+		<hr>
+		<select is="select1" v-model="select1"></select>{{select1}}
 	</div>
 	<script>
-		Vue.transition('bounce1',{
-			enterClass:'rubberBand',
-			leaveClass:'lightSpeedOut'
+		var select1 = Vue.extend({
+			template:'<select><option selected>A</option><option selected>B</option><option selected>C </option></select>'
+		});
+		var radio_sex1 = Vue.extend({
+			template:'<input type="radio" checked="checked" name="Sex" value="male">'
+		});
+		var radio_sex2 = Vue.extend({
+			template:'<input type="radio" checked="checked" name="Sex" value="female">'});
+		var checkbox_bike = Vue.extend({
+			template:'<input type="checkbox" name="bike">'
+		});
+		var checkbox_car = Vue.extend({
+			template:'<input type="checkbox" name="car">'
+		});
+		var textarea1 = Vue.extend({
+			template:'<textarea rows="10" cols="30"><textarea>'
+		});
+		var input1 = Vue.extend({
+			template:'<input type="text" value="使用了textbox" name="input1">'
+		});
+		var tr1 = Vue.extend({
+			template:'<tr><td>项目1</td><td>{{a}}</td></tr>',
+			data:function(){
+				return {
+					a:'学vue，还蛮开心的'
+				}
+			}
+		});
+		var tr2 = Vue.extend({
+			template:'<tr><td>项目2</td><td>{{a}}</td></tr>',
+			data:function(){
+				return {
+					a:'每一个例子，都有价值'
+				}
+			}
 		});
 		var vm = new Vue({
-			el:"#app",
+			el:'#app',
+			components:{
+				'my-component1':tr1,
+				'my-component2':tr2,
+				'input1':input1,
+				'textarea1':textarea1,
+				'checkbox_bike':checkbox_bike,
+				'checkbox_car':checkbox_car,
+				'radio_sex1':radio_sex1,
+				'radio_sex2':radio_sex2,
+				'select1':select1
+			},
 			data:{
-				ok:true
+				'input1':'',
+				'textarea1':'',
+				'checkbox_bike':'',
+				'checkbox_car':'',
+				'radio1':'',
+				'select1':'',
 			}
 		});
 	</script>
 </body>
 
-</html> 
+</html>

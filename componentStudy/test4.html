@@ -1,0 +1,44 @@
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<script src="http://cdn.jsdelivr.net/vue/1.0.26/vue.min.js"></script>
+</head>
+<body>
+  <div id="app">
+    <my-component></my-component>
+    <pre>
+      (1)在VUE.JS，组件有一个观念，就是用很多的tag来完成业务目的
+      (2)tag,可以在v层重复使用很多次
+      (3)Vue.component，是将构造器注册在html的tag中，以便将vue.js渲染
+      (4)Vue.extend，是构造器，没有实例，可以在复制过程中，更改或加入内容给予构造器中
+    </pre>
+    <my-component2></my-component2>
+  </div>
+  <script>
+    var MyComponent = Vue.extend({
+      template:'<div><h1>{{msg1}}</h1></div>',
+      data:function(){
+        return {
+          msg1:"我爱学习，学习爱我"
+        }
+      }
+    });
+    Vue.component('my-component',MyComponent);//全局注册组件，tag为my-component
+    var MyComponent2 = Vue.extend({
+      template:'<div><h1>{{msg1}}</h1></div>',
+      data:function(){
+        return {
+          msg1:'因为你萌啊'
+        }
+      }
+    });
+    Vue.component('my-component2',MyComponent2);
+    var vm = new Vue({
+      el:"#app"
+    });
+  </script>
+</body>
+
+</html>
+。
