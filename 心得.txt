@@ -60,3 +60,8 @@ var myComponentInstance = new MyComponent()
 有了组件构造器，可以通过Vue.component(tag,MyComponent);注册组件
 然后tag作为标签的挂载点，挂载在html当中，并替换成模板-
 可以在组件中选择是replace还是insert，通过replace的布尔值来设置
+
+2016.7.31
+
+关于vue.js中的template标签
+<template id=""></template> 其实是和 <script type="text/x-tempate" id=""></script>是等价的，这个直接在vm中表明id即可
