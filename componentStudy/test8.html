@@ -1,0 +1,29 @@
+<html>
+<head>
+ <title></title>
+ <meta charset="utf-8">
+ <script src="http://cdn.jsdelivr.net/vue/1.0.26/vue.min.js"></script>
+</head>
+<body>
+ <pre>
+   组件选项关于el的注意事项
+ </pre>
+ <div id="app">
+   ABC
+ </div>
+ <script>
+   var MyComponent = Vue.extend({
+     el:function(){
+       return "#app"
+     },
+     template:'<div>{{a}}</div>',
+     data:function(){
+       return {
+         a:'学vue，还蛮开心的'
+       }
+     }
+   });
+   var vm = new MyComponent();
+ </script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<script src="http://cdn.jsdelivr.net/vue/1.0.26/vue.min.js"></script>
+</head>
+<body>
+	<div id="app">
+		<my-component></my-component>
+		<my-component></my-component>
+		<my-component></my-component>
+	</div>
+  <script>
+	//定义组件Child
+		var Child = Vue.extend({
+			template:'<span>ABC{{msg}}</span>',
+			data:function(){
+				return {
+					msg:'EFG'
+				}
+			}
+		});
+		// 定义一个br组件 ，额，权当例子来用了
+		var Br = Vue.extend({
+			template:'<br>'
+		});
+		// O
+		var Parent = Vue.extend({
+			template:'---Parent:{{msg}}<my-component></my-component>---<br-component>',
+			components:{
+				'my-component':Child,
+				'br-component':Br
+			},
+			data:function(){
+				return {
+					msg:'ruiy'
+				}
+			}
+		});
+		var vm = new Vue({
+			el:'#app',
+			components:{
+				'my-component':Parent
+			}
+		});
+  </script>
+</body>
+</html>

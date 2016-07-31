@@ -1,0 +1,48 @@
+<html>
+<head>
+ <title></title>
+ <meta charset="utf-8">
+ <script src="http://cdn.jsdelivr.net/vue/1.0.26/vue.min.js"></script>
+</head>
+<body>
+ <pre>
+    使用x-template,增强组件的弹性
+ </pre>
+ <script type="text/x-template" id="userform">
+ <div>
+        <h2>{{title}}</h2>
+        <label for="username">Name:</label>
+        <input id="username" v-model="user.name">
+        <label for="useremail">Email:</label>
+        <input id="useremail" v-model="user.email" >
+        <button v-on:click="save">Submit</button>
+        {{tmp1}}<br>
+        {{user.name}}<br>
+        {{user.email}}<br>
+  </div>
+ </script>
+ <div id="app">
+ </div>
+ <script>
+  var vm = new Vue({
+    el:'#app',
+    template:'#userform',
+    data:function(){
+      return {
+        title:'使用者登录',
+        user:{
+          name:'ruiy',
+          email:'2997215859@qq.com'
+        },
+        tmp1:''
+      }
+    },
+    methods:{
+      'save':function(){
+        this.tmp1 = 'chicked'
+      }
+    }
+  });
+ </script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+ <html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<script src="http://cdn.jsdelivr.net/vue/1.0.26/vue.min.js"></script>
+</head>
+<body>
+	<pre>
+		组件关于data选项，错误写法
+	</pre>
+	<div id="app">
+		<cc></cc>
+	</div>
+  <script>
+		var data = function(){
+			return {
+				a:1
+			}
+		}
+		var MyComponent = Vue.extend({
+			template:'<span>{{a}}</span>',
+			data:data
+		});
+		var vm = new Vue({
+			el:'#app',
+			components:{
+				'cc':MyComponent
+			}
+		});
+  </script>
+</body>
+</html>
