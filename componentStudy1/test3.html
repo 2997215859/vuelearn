@@ -1,0 +1,31 @@
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<script src="http://cdn.jsdelivr.net/vue/1.0.26/vue.min.js"></script>
+</head>
+<body>
+  <pre>
+    动态改变传递props
+  </pre>
+  <div id="app">
+	<input type="text" v-model="pMsg"/>
+    <child :my-msg="pMsg"></child>
+  </div>
+  <script>
+    Vue.config.debug = true;
+    var vm = new Vue({
+      el:'#app',
+      data:{
+        pMsg:'omg'
+	  },
+	  components:{
+		child:{
+			props:['myMsg'],
+			template:'<span>{{ myMsg }}</span>'
+		}
+	  }
+    });
+  </script>
+</body>
+</html>

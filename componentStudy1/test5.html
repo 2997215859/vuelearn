@@ -1,0 +1,34 @@
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<script src="http://cdn.jsdelivr.net/vue/1.0.26/vue.min.js"></script>
+</head>
+<body>
+	<pre>
+		默认情况下，props是父组件到子组件的单向绑定，也可以强制双向绑定 和 单次绑定
+	</pre>
+  <div id="app">
+	1.<input type="text" v-model="parentMsg">
+	<br>
+	2.<child :msg="parentMsg"></child>默认单向绑定
+	<br>
+	3.<child :msg.sync="parentMsg"></child>双向绑定
+	<br>
+	4.<child :msg.once="parentMsg"></child>单次绑定
+  </div>
+  <script>
+    Vue.config.debug = true;
+    Vue.component('child',{
+        props:['msg'],
+        template:'<span><input type="text" v-model="msg" /></span>'
+    });
+    var vm = new Vue({
+      el:'#app',
+	  data:{
+		  parentMsg:"ruiy"
+	  }
+    });
+  </script>
+</body>
+</html>

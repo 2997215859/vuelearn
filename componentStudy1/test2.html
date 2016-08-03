@@ -1,0 +1,28 @@
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<script src="http://cdn.jsdelivr.net/vue/1.0.26/vue.min.js"></script>
+</head>
+<body>
+  <pre>
+    html 的 特性 对大小写不敏感 ，因此props的属性名为驼峰时，反应到html上应该是蛇形
+  </pre>
+  <div id="app">
+    <child :P-message="pMsg"></child>
+  </div>
+  <script>
+    Vue.config.debug = true;
+    Vue.component('child',{
+      props:['pMessage'],
+      template:'<span>{{pMessage}}<span>'
+    });
+    var vm = new Vue({
+      el:'#app',
+      data:{
+        pMsg:'omg'
+      }
+    });
+  </script>
+</body>
+</html>

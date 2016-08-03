@@ -1,0 +1,27 @@
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<script src="http://cdn.jsdelivr.net/vue/1.0.26/vue.min.js"></script>
+</head>
+<body>
+    <pre>
+        字面量 和 动态变量 
+    </pre>
+  <div id="app">
+	<comp some-prop="199"></comp>
+    <br>
+    <comp :some-prop="199"></comp>
+  </div>
+  <script>
+    Vue.config.debug = true;
+    Vue.component('comp',{
+        props:['someProp'],
+        template:'<span>{{ someProp+199 }}</span>'
+    });
+    var vm = new Vue({
+      el:'#app'
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<script src="http://cdn.jsdelivr.net/vue/1.0.26/vue.min.js"></script>
+</head>
+<body>
+	<pre>
+
+	</pre>
+  <div id="app">
+	1.<input type="text" v-model="parentMsg">
+	<br>
+	2.<example
+		:prop-a="100"
+		prop-b=""
+		:prop-c=""
+		:prop-d=""
+		:prop-e.sync="parentMsg"
+		prop-f="13"
+		:prop-g="100"
+		prop-h="100"
+		prop-m="100"
+	></example>
+  </div>
+  <template id="pp">
+	<ul>
+		<li>propA : {{propA+1}}</li>
+		<li>propB : {{propB+1}}</li>
+		<li>propC : {{propC+1}}</li>
+		<li>propD : <pre>{{ propD | json }}</pre></li>
+		<li>propE : <input type="text"  v-model="propE"></li>
+		<li>propF : {{propF+1}}</li>
+		<li>propG : {{propG+1}}</li>
+		<li>propH : <pre>{ propH | json}</pre></li>
+		<li>propM : {{propM+1}}</li>
+	</ul>
+  </template>
+  <script>
+    Vue.config.debug = true;
+    Vue.component('example',{
+        props:{
+			// 基础类型检测 （null 意思是任何类型都可以）
+			propA:Number,
+			propB:{
+				type:String,
+				required:true
+			},
+			propC:{
+				type:Number,
+				default:100
+			},
+			propD:{
+				type:Object,
+				default:function(){
+					return{
+						msg:'hello'
+					}
+				}
+			},
+			propE:{
+				twoWay:true
+			},
+			propF:{
+				validator:function(value){
+					return value > 10
+				}
+			},
+			propG:{
+				coerce:function(val){
+					return val+""; //将JSON字符串转换为对象
+				}
+			},
+			propH:{
+				coerce:function(val){
+					return JSON.parse(val);
+				}
+			},
+			propM:[String,Number]
+		},
+        template:'#pp'
+    });
+    var vm = new Vue({
+      el:'#app',
+	  data:{
+		  parentMsg:"ruiy"
+	  }
+    });
+  </script>
+</body>
+</html>

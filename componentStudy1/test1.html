@@ -1,0 +1,34 @@
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<script src="http://cdn.jsdelivr.net/vue/1.0.26/vue.min.js"></script>
+</head>
+<body>
+  <pre>
+    关于props,由于子组件的数据的作用域都是在data中，而不应涉及父组件，那么当需要父组件的数据时，可以通过props来将父组件的数据传给
+    子组件，值得注意时重名的data中的数据会被忽略
+  </pre>
+  <div id="app">
+    <child :msg="pMsg"></child>
+  </div>
+  <script>
+    Vue.config.debug = true;
+    Vue.component('child',{
+      props:['msg'],
+      template:'<span>{{msg}}<span>',
+      data:function(){
+        return {
+          msg:'ruiy'
+        }
+      }
+    });
+    var vm = new Vue({
+      el:'#app',
+      data:{
+        pMsg:'omg'
+      }
+    });
+  </script>
+</body>
+</html>
