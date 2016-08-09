@@ -65,3 +65,18 @@ var myComponentInstance = new MyComponent()
 
 关于vue.js中的template标签
 <template id=""></template> 其实是和 <script type="text/x-tempate" id=""></script>是等价的，这个直接在vm中表明id即可
+
+2016.8.2
+
+关于props,由于子组件的数据的作用域都是在data中，而不应涉及父组件，那么当需要父组件的数据时，可以通过props来将父组件的数据传给
+子组件,值得注意时重名的data中的数据会被忽略。props默认是单向绑定，可以使用.sync和.once来强制双向绑定和单次绑定
+
+2016.8.6
+
+可以直接在vm上绑定$on,然后用$emi`t来触发，也可以直接讲事件写在vm的events里，然后用$dispatch或者$emit或者$broadcast去触发。值得一提的是，$dispatch沿着父组件树传播直到触发事件，$broadcast沿着不同路径的子组件分叉传播直到触发事件。
+
+2016.8.8
+
+在组件切换或者载入的时候，可以加入钩子，比如active等钩子
+
+transition-mode特性用于指定俩个动态组件之间如何过度。在默认情况下，进入与离开平滑的过渡。这个特性可以指定另外俩个模式，分别是in-out和out-in模式。分别是先入后出和先出后入。
