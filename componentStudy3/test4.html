@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="http://cdn.jsdelivr.net/vue/1.0.26/vue.min.js"></script>
+</head>
+<body>
+    <div id="vm">
+        <my-component>
+            <p>4.~view层~</p>
+            <p>5.This is some origin content</p>
+            <p>6.This is some more origin content</p>
+        </my-component>
+    </div>
+    <template id="my-component">
+        <div>
+            <h1>1.~template层~</h1>
+            <h1>2.This is my component!</h1>
+            <slot>
+                3.view层中的 内容，会显示在这里！
+            </slot>
+        </div>
+    </template>
+</body>
+<script type="text/javascript">
+    Vue.component('my-component',{
+        template:'#my-component'
+    });
+    var vm = new Vue({
+        el:'#vm',
+        data:{
+            msg:[]
+        }
+    });
+</script>
+</html>

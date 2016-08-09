@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    .blue{color:blue;}
+    .red{color:red;}
+    .greed{color:#fff;background:#00cccc;}
+    </style>
+    <script src="http://cdn.jsdelivr.net/vue/1.0.26/vue.min.js"></script>
+</head>
+<body>
+    <template id="ccc">
+        <br> ccc
+        <input type="text" v-model="msg" class="red">
+        <button @click="set_parent1">$parent 设置上级资料</button>
+        <button @click="set_root1">$root设置根组件的资料</button>
+    </template>
+    <template id="bbb">
+        <hr> bbb
+        <input type="text" v-model="msg" class="blue">
+        <button @click="set_parent1"> $parent清空上级资料</button>
+        msg:{{ msg | json}}
+        <ccc></ccc>
+    </template>
+    <!-- 根组件模板 -->
+    <div id="aaa">
+        <hr>
+        <p class="greed">aaa Message:{{ messages | json}}</p>
+        <button @click="set_bbb0"> $children[0] 设置 子组件的资料</button>
+        <button @click="set_bbb1"> $children[1] 设置 子组件的资料</button>
+        <button @click="set_bbb2"> $children[2] 设置 子组件的资料</button>
+        <bbb></bbb>
+        <bbb></bbb>
+        <bbb></bbb>
+    </div>
+    <div id="app">
+        <my-component></my-component>
+    </div>
+    <script>
+    Vue.component('ccc',{
+        template:'#ccc',
+        data:function(){
+            return {
+                msg:"ruiy"
+            }
+        },
+        methods:{
+            set_parent1:function(){
+                this.$parent.$set('msg',this.msg);
+            },
+            set_root1:function(){
+                this.$root.messages.push(this.msg);
+                this.msg="";
+            }
+        }
+    });
+    Vue.component('bbb',{
+        template:'#bbb',
+        data:function(){
+            return {
+                msg:'hello'
+            }
+        },
+        methods:{
+            set_parent1:function(){
+                this.$parent.messages = [];
+            }
+        }
+    });
+    var Parent = new Vue({
+        el:"#aaa",
+        data:{
+            messages:[]
+        },
+        methods:{
+            'set_bbb0':function() {
+                this.$children[0].msg = "子组件[0]设置]";
+            },
+            'set_bbb1':function() {
+                this.$children[1].msg = "[子组件[1]设置]";
+            },
+            'set_bbb2':function() {
+                this.$children[2].msg = "[子组件[2]设置]";
+            }
+        }
+    });
+    var vm = new Vue({
+        el:"#app",
+        components:{
+            'my-component':Parent
+        }
+    });
+    </script>
+</body>
+</html>

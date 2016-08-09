@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="http://cdn.jsdelivr.net/vue/1.0.26/vue.min.js"></script>
+</head>
+<body>
+    <div id="vm">
+        <app></app>
+    </div>
+    <template id="app">
+        <div>
+            {{msg}}
+            <app-header v-show="someChildProperty"></app-header>
+            <app-footer></app-footer>
+        </div>
+    </template>
+    <template id="app-header">
+        <div>{{msg}}</div>
+    </template>
+    <template id="app-footer">
+        <div>{{msg}}</div>
+    </template>
+</body>
+<script type="text/javascript">
+    Vue.component('app-header',{
+        template:'<div v-show="someChildProperty">{{msg}}</div>',
+        data:function() {
+            return {
+                msg:'app-header ruiy',
+                'someChildProperty':true
+            }
+        }
+    });
+    Vue.component('app-footer',{
+        template:'#app-footer',
+        data:function() {
+            return {
+                msg:'app-footer ruiy'
+            }
+        }
+    });
+    Vue.component('app',{
+        template:'#app',
+        data:function(){
+            return {
+                msg:'app',
+                showapp:true
+            }
+        }
+    });
+
+    var vm = new Vue({
+        el:'#vm',
+        data:{
+            msg:[]
+        }
+    });
+</script>
+</html>
